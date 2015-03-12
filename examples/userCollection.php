@@ -5,19 +5,20 @@ Test for the new user collections object
 
 //error_reporting(E_ALL ^ E_NOTICE);
 
-include (dirname(__FILE__) . "/../lib/adLDAP/adLDAP.php");
+use adLDAP\adLDAP;
+use adLDAP\adLDAPException;
+
+include(dirname(__FILE__) . '/../lib/adLDAP/adLDAP.php');
 try {
     $adldap = new adLDAP($options);
-}
-catch (adLDAPException $e) {
+} catch (adLDAPException $e) {
     echo $e;
-    exit();   
+    exit();
 }
 
-echo ("<pre>\n");
+echo("<pre>\n");
 
 $collection = $adldap->user()->infoCollection('username');
 
 print_r($collection->memberOf);
 print_r($collection->displayName);
-?>
